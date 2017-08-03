@@ -1,0 +1,20 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "gestureName",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "gestureTrainingStatus",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160226034245",
+    "dto": "no",
+    "service": "serviceImpl",
+    "pagination": "infinite-scroll"
+}

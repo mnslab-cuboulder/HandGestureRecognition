@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "capapp",
+    "packageName": "com.nfa.capapp",
+    "packageFolder": "com/nfa/capapp",
+    "authenticationType": "session",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "no",
+    "useSass": true,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": false,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "a3f47bdbda55082a94cc24fcfc17759b2b550d40",
+    "testFrameworks": [
+      "gatling"
+    ]
+  }
+}

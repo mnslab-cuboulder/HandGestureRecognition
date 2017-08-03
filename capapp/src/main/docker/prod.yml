@@ -1,0 +1,10 @@
+capapp-postgresql:
+  container_name: capapp-postgresql
+  image: postgres:9.4.5
+  # volumes:
+  #   - ~/volumes/jhipster/capapp/postgresql/:/var/lib/postgresql/
+  environment:
+    - POSTGRES_USER=capapp
+    - POSTGRES_PASSWORD=
+  ports:
+    - "5432:5432"

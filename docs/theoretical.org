@@ -1,0 +1,52 @@
+#+TITLE: Theoretical Equations
+#+AUTHOR: Cory Coellen, Michael Hunsinger, Sean Kuhlman, Raphael O'Flynn
+#+OPTIONS: toc:nil date:nil
+#+LATEX_HEADER: \setlength{\parindent}{0cm}
+
+#+BEGIN_LaTeX
+  \begin{equation}
+    C = \epsilon \frac{A}{d}
+  \end{equation}
+#+END_LaTeX
+
+Where \epsilon is permittivity constant. Since this is a practical application,
+we can limit or know what the values are on the right-hand side of the
+equation. \\
+
+Below are some values for the permittivity constant that may be applicable in
+our application. We included paper since some of our initial tests used paper
+as the dielectric. 
+
+|-------------+-------|
+| Material    | Value |
+|-------------+-------|
+| ABS Plastic |   2.0 |
+| Paper       |   3.0 |
+| Neoprene    |   6.7 |
+| Rubber      |   7.0 |
+|-------------+-------|
+
+The distance, /d/, for practical purposes cannot be too large either. While
+some parts of the wristband may be larger, lets limit the values of /d/ to $1
+\text{ mm} \leq d \leq 7 \text{mm}$. For comparison, the watch face of the Apple Watch is
+12.6 mm thick. \\
+
+The area, /A/, must also be constrained. Similar to the distance, areas of the
+wristband may be larger, lets limit the values to $26 \text{ mm} \leq A \leq 32
+\text{ mm}$.
+
+Below are the calculations for the various materials across a variety of
+materials. All values for C are in Farads.
+
+|----------+--------+---------------+---------------+--------------+------------|
+| A (mm^2) | d (mm) |       C (ABS) |     C (Paper) | C (Neoprene) | C (Rubber) |
+|----------+--------+---------------+---------------+--------------+------------|
+|       26 |      1 |    4.60408e-7 |    6.90612e-7 |     1.542e-6 |    1.61e-6 |
+|       27 |      2 |    2.39058e-7 |    3.58587e-7 |      8.01e-7 |    8.35e-7 |
+|       28 |      3 |  1.6527467e-7 |    2.47912e-7 |     5.537e-7 |     5.8e-7 |
+|       29 |      4 |    1.28383e-7 |   1.925745e-7 |     4.303e-7 |     4.5e-7 |
+|       30 |      5 |    1.06248e-7 |    1.59372e-7 |      3.56e-7 |    3.72e-7 |
+|       31 |      6 |  9.1491333e-8 |    1.37237e-7 |     3.065e-7 |     3.2e-7 |
+|       32 |      7 |  8.0950857e-8 |  1.2142629e-7 |     2.711e-7 |    2.83e-7 |
+|----------+--------+---------------+---------------+--------------+------------|
+#+TBLFM: $3=2*8.854e-9*$1/$2::$4=3*$1*8.854e-9/$2::$5=6.7*$1*8.854e-9/$2;Np4::$6=7*$1*8.854e-9/$2;Np3

@@ -1,0 +1,8 @@
+{
+    "relationships": [],
+    "fields": [],
+    "changelogDate": "20160226035532",
+    "dto": "no",
+    "service": "serviceImpl",
+    "pagination": "infinite-scroll"
+}

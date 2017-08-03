@@ -1,0 +1,132 @@
+<div ng-cloak>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="push-down"><img src="./assets/images/mns_logo.png" width="100" height="100" class="img-responsive"/></div>
+        </div>
+        <div class="col-md-6">
+            <div class="push-down"><img src="./assets/images/mns_banner.png" class="img-responsive center"/></div>
+	    <div>		
+                <jh-alert-success>
+			<div class="alerts">{{alert.msg}}</div>
+                </jh-alert-success>
+                <jh-alert-error>
+			<div class="alerts">{{alert.msg}}</div>
+                </jh-alert-error>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="push-down"><img src="./assets/images/uc_logo.png" width="100" height="100" align="right" class="img-responsive"/></div>
+
+        </div>
+    </div>
+    <div class="panel panel-default" data-ng-controller="gestures">
+        <div class="panel-body">
+            <div data-ng-controller="portList">
+                <h3>Select Device</h3>
+                <select class="form-control" ng-model="device">
+                    <option value="" disabled >Device List.....</option>
+                    <option data-ng-repeat="item in items" value="{{item}}">{{item}}</option>
+                </select>
+                <button class="btn btn-success" ng-click="connectPort(device)">
+                    <span class="glyphicon glyphicon-success" aria-hidden="true"></span>
+                    Connect
+                </button>
+                <button class="btn btn-primary nudge-right" ng-click="refresh()">
+                    <span class="glyphicon glyphicon-success" aria-hidden="true"></span>
+                    Refresh Devices
+                </button>
+                <div ng-show="isConnected">
+                	<h3>Connected Device:</h3>
+                	<div class="connected-device">
+	                	<div class="flex-1">{{connectedDevice}}</div>
+	                	<div class="flex-1">{{deviceMessage}}</div>
+		                <button class="btn btn-primary push-left" ng-click="echo()" ng-disabled="echoDisabled">
+		                    <span class="glyphicon glyphicon-danger" aria-hidden="true"></span>
+		                    Echo
+		                </button>
+		                <button class="btn btn-danger push-left" ng-click="disconnect()">
+		                    <span class="glyphicon glyphicon-danger" aria-hidden="true"></span>
+		                    Disconnect
+		                </button>
+	                </div>
+                </div>
+            </div>
+            <div>
+                <h3>Add Gestures for Training</h3>
+                <select class="form-control" ng-model="gesture">
+                    <option value="" disabled >Gesture List.....</option>
+                    <option data-ng-repeat="item in items" value="{{item.gestureName}}">{{item.gestureName}}</option>
+                </select>
+                <button class="btn btn-primary"  ng-click="addGestureRow(gesture)">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Add Gesture
+                </button>
+                <table st-table="rowCollection" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Gesture name</th>
+                        <th>Key Binding</th>
+                        <th>Low Threshold</th>
+                        <th>High Threshold</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in rowCollection" ng-class="{'active-gesture': row.activeGesture}">
+                        <td>{{row.name}}</td>
+                        <!-- <td><div contenteditable="true">{{row.cycles}} </div></td> -->
+                        <td>
+                          <div class="row">
+                            <!-- <div class="col-lg-5"> -->
+                              <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" ng-keydown="onKeydown($event, row)" ng-keyup="onKeyup($event, row)" ng-model="row.key.display">
+                              </div>
+                            <!-- </div> -->
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <input class="form-control input-sm" type="number" ng-model="row.key.lowThreshold">
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <input class="form-control input-sm" type="number" ng-model="row.key.highThreshold">
+                          </div>
+                        </td>
+                        <td>{{row.trainingStatus}}</td>
+                        <td>
+                            <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+                                <i class="glyphicon glyphicon-remove-circle">
+                                </i>
+                            </button>
+                            <button type="button" ng-click="trainGesture(row)" ng-disabled="isStreaming()" class="btn btn-sm btn-success nudge-right">
+                                Train
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </p>
+            <p>
+            <div>
+                <button class="btn btn-success start-stop" ng-disabled="!doneEnabled()" ng-show="!isStreaming()" ng-click="startStreaming()">
+                  <span class="glyphicon glyphicon-success" aria-hidden="true"></span>
+                  Start Prediction
+                </button>
+                <button class="btn btn-danger start-stop" ng-show="isStreaming()" ng-click="stopStreaming()">
+                  <span class="glyphicon glyphicon-success" aria-hidden="true"></span>
+                  Stop Prediction
+                </button>
+                <button class="btn btn-primary nudge-right" ng-show="haveModel()" ng-click="clearModel()">
+                  <span class="glyphicon glyphicon-success" aria-hidden="true"></span>
+                  Clear Training
+                </button>
+                <button type="button" class="btn btn-info" ng-click="toggleKeyPress()">{{keyPressLabel}}</button>
+            </div>
+            </p>
+       </div>
+    </div>
+</div>
